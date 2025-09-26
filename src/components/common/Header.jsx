@@ -25,22 +25,33 @@ const Header = () => {
                         >
                             Courses
                         </a>
-                        <a 
-                            href="#about" 
+                        <Link 
+                            to="/about" 
                             className="text-black hover:text-gray-600 transition-colors duration-200 font-medium"
                         >
                             About
-                        </a>
-                        <a 
-                            href="#contact" 
+                        </Link>
+                        <Link 
+                            to="/contact" 
                             className="text-black hover:text-gray-600 transition-colors duration-200 font-medium"
                         >
                             Contact
-                        </a>
+                        </Link>
                     </nav>
 
                     {/* Auth Buttons / User Dashboard */}
                     <div className="flex items-center space-x-4">
+                        {/* Chatbot Icon */}
+                        <Link 
+                            to="/chatbot"
+                            className="text-black hover:text-gray-600 transition-colors duration-200 p-2"
+                            title="Chatbot"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </Link>
+
                         {isLoggedIn ? (
                             <button
                                 onClick={() => setIsUserDashOpen(!isUserDashOpen)}

@@ -1,4 +1,58 @@
+import { useNavigate } from 'react-router-dom';
+import CourseCard from '../components/common/CourseCard'; // Adjust path as needed
+
 const Home = () => {
+    const navigate = useNavigate();
+
+    const popularCourses = [
+        {
+            id: 1,
+            title: "React Fundamentals",
+            description: "Learn the basics of React development",
+            price: 49,
+            image: "/api/placeholder/400/200",
+            instructor: "John Doe",
+            rating: 4.8,
+            students: 1250
+        },
+        {
+            id: 2,
+            title: "Python for Beginners",
+            description: "Master Python programming from scratch",
+            price: 59,
+            image: "/api/placeholder/400/200",
+            instructor: "Jane Smith",
+            rating: 4.9,
+            students: 2100
+        },
+        {
+            id: 3,
+            title: "UI/UX Design",
+            description: "Create beautiful user interfaces",
+            price: 79,
+            image: "/api/placeholder/400/200",
+            instructor: "Mike Wilson",
+            rating: 4.7,
+            students: 890
+        }
+    ];
+
+    const handleCourseClick = (courseId) => {
+        navigate(`/course/${courseId}`);
+    };
+
+    const handleCategoryClick = (category) => {
+        navigate(`/courses?category=${category.toLowerCase()}`);
+    };
+
+    const handleGetStarted = () => {
+        navigate('/courses');
+    };
+
+    const handleStartTrial = () => {
+        navigate('/signup');
+    };
+
     return (
         <div className="min-h-screen bg-white text-gray-800">
             {/* Hero Section */}
@@ -10,7 +64,10 @@ const Home = () => {
                     <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                         Discover innovative educational tools and resources designed to enhance your learning experience.
                     </p>
-                    <button className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 shadow-lg">
+                    <button 
+                        onClick={handleGetStarted}
+                        className="bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 shadow-lg"
+                    >
                         Get Started
                     </button>
                 </div>
@@ -75,19 +132,31 @@ const Home = () => {
                 <div className="container mx-auto px-4">
                     <h3 className="text-3xl font-bold text-center mb-12 text-black">Course Categories</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div 
+                            onClick={() => handleCategoryClick('Programming')}
+                            className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer"
+                        >
                             <div className="text-4xl mb-4">💻</div>
                             <h4 className="text-lg font-semibold text-black">Programming</h4>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div 
+                            onClick={() => handleCategoryClick('Design')}
+                            className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer"
+                        >
                             <div className="text-4xl mb-4">🎨</div>
                             <h4 className="text-lg font-semibold text-black">Design</h4>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div 
+                            onClick={() => handleCategoryClick('Data Science')}
+                            className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer"
+                        >
                             <div className="text-4xl mb-4">📊</div>
                             <h4 className="text-lg font-semibold text-black">Data Science</h4>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div 
+                            onClick={() => handleCategoryClick('Business')}
+                            className="bg-gray-100 p-6 rounded-lg text-center hover:bg-gray-200 transition duration-300 cursor-pointer"
+                        >
                             <div className="text-4xl mb-4">💼</div>
                             <h4 className="text-lg font-semibold text-black">Business</h4>
                         </div>
@@ -100,45 +169,21 @@ const Home = () => {
                 <div className="container mx-auto px-4">
                     <h3 className="text-3xl font-bold text-center mb-12 text-black">Popular Courses</h3>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300">
-                            <div className="h-48 bg-gray-300"></div>
-                            <div className="p-6">
-                                <h4 className="text-xl font-semibold mb-2 text-black">React Fundamentals</h4>
-                                <p className="text-gray-600 mb-4">Learn the basics of React development</p>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-2xl font-bold text-black">$49</span>
-                                    <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-300">
-                                        Enroll
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300">
-                            <div className="h-48 bg-gray-300"></div>
-                            <div className="p-6">
-                                <h4 className="text-xl font-semibold mb-2 text-black">Python for Beginners</h4>
-                                <p className="text-gray-600 mb-4">Master Python programming from scratch</p>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-2xl font-bold text-black">$59</span>
-                                    <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-300">
-                                        Enroll
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300">
-                            <div className="h-48 bg-gray-300"></div>
-                            <div className="p-6">
-                                <h4 className="text-xl font-semibold mb-2 text-black">UI/UX Design</h4>
-                                <p className="text-gray-600 mb-4">Create beautiful user interfaces</p>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-2xl font-bold text-black">$79</span>
-                                    <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-300">
-                                        Enroll
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        {popularCourses.map(course => (
+                            <CourseCard 
+                                key={course.id}
+                                course={course}
+                                onClick={() => handleCourseClick(course.id)}
+                            />
+                        ))}
+                    </div>
+                    <div className="text-center mt-8">
+                        <button 
+                            onClick={() => navigate('/courses')}
+                            className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+                        >
+                            View All Courses
+                        </button>
                     </div>
                 </div>
             </section>
@@ -177,7 +222,10 @@ const Home = () => {
                 <div className="container mx-auto px-4 text-center">
                     <h3 className="text-3xl font-bold mb-4 text-white">Ready to Start Learning?</h3>
                     <p className="text-xl text-gray-300 mb-8">Join thousands of students and transform your career today.</p>
-                    <button className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg">
+                    <button 
+                        onClick={handleStartTrial}
+                        className="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg"
+                    >
                         Start Free Trial
                     </button>
                 </div>
